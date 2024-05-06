@@ -64,6 +64,7 @@ def riot_api():
                         }
                     }
                     point_collection.update_one({'summonerId': data['summonerId']}, update_operation, upsert=True)
+                    print(f'Updating {gameName} lp to {leaguePoints}')
 
         else:
             print(f"No entry found for summonerId: {data['summonerId']}")

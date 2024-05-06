@@ -72,6 +72,7 @@ def calculate_delta():
 
         if update_data['$set']:
             lp_collection.update_one({'summonerId': summoner_Id}, update_data)
+            print(f"Updated {summoner_Id} delta")
 
 
 if __name__ == "__main__":

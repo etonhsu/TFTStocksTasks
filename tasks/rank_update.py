@@ -22,6 +22,7 @@ def rank_update():
             {"_id": user["_id"]},
             {"$set": {"rank": rank}}
         )
+        print(f'Rank {rank}: {user["_id"]}')
 
 
 if __name__ == "__main__":

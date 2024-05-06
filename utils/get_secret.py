@@ -1,7 +1,4 @@
 from google.cloud import secretmanager
-import logging
-
-logging.basicConfig(level=logging.DEBUG)
 
 
 def get_secret(secret_id):

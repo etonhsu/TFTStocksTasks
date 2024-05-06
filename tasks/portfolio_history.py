@@ -32,6 +32,7 @@ def update_portfolio_history():
                     }
                 }}
             )
+            print(f'Updated {user["_id"]} portfolio')
 
 
 if __name__ == "__main__":
