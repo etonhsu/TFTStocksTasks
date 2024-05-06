@@ -9,7 +9,7 @@ steps:
 
   # Optional Step 3: Deploy the image to Google Cloud Run or another service
   - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
-    entrypoint: 'gcloud'
+    entrypoint: gcloud
     args:
       - 'run'
       - 'deploy'
