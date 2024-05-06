@@ -25,5 +25,6 @@ def rank_update():
 
 
 if __name__ == "__main__":
-    rank_update()
-    sleep(300)
+    while True:
+        rank_update()
+        sleep(300)

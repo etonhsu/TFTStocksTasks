@@ -76,5 +76,6 @@ def riot_api():
 
 
 if __name__ == "__main__":
-    riot_api()
-    sleep(300)
+    while True:
+        riot_api()
+        sleep(300)

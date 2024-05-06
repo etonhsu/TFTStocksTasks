@@ -75,5 +75,6 @@ def calculate_delta():
 
 
 if __name__ == "__main__":
-    calculate_delta()
-    sleep(300)
+    while True:
+        calculate_delta()
+        sleep(300)
