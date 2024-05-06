@@ -16,7 +16,7 @@ steps:
     args:
       - '-c'
       - |
-        gcloud compute instances update-container instance-20240506-034132 \
+        gcloud compute instances update-container tft-tasks-vm \
         --zone us-central1-c \
         --container-image gcr.io/$PROJECT_ID/tft-tasks:$SHORT_SHA    
 
