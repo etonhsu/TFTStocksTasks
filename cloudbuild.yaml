@@ -1,3 +1,8 @@
+options:
+  logging: CLOUD_LOGGING_ONLY  # Ensures logs are sent to Cloud Logging
+  # Uncomment and customize the next line if using a custom service account
+  # serviceAccount: 'projects/YOUR_PROJECT_ID/serviceAccounts/YOUR_CUSTOM_SERVICE_ACCOUNT'
+
 steps:
   # Step 1: Build the Docker image
   - name: 'gcr.io/cloud-builders/docker'
@@ -7,7 +12,7 @@ steps:
   - name: 'gcr.io/cloud-builders/docker'
     args: ['push', 'gcr.io/$PROJECT_ID/tft-tasks:$SHORT_SHA']
 
-  # Optional Step 3: Deploy the image to Google Cloud Run or another service
+  # Optional Step 3: Deploy the image to Google Cloud Run
   - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
     entrypoint: gcloud
     args:
