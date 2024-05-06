@@ -1,3 +1,5 @@
+from time import sleep
+
 from utils.database import connect_lp
 from datetime import datetime, timedelta
 from utils.pricing_model import price_model
@@ -74,3 +76,4 @@ def calculate_delta():
 
 if __name__ == "__main__":
     calculate_delta()
+    sleep(300)

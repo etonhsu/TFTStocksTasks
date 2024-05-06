@@ -1,4 +1,5 @@
 from datetime import datetime
+from time import sleep
 
 from utils.database import connect_user
 from utils.pricing_model import price_model
@@ -35,3 +36,4 @@ def update_portfolio_history():
 
 if __name__ == "__main__":
     update_portfolio_history()
+    sleep(300)

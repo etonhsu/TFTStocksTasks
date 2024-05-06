@@ -1,4 +1,5 @@
 from datetime import datetime
+from time import sleep
 
 import requests
 
@@ -76,3 +77,4 @@ def riot_api():
 
 if __name__ == "__main__":
     riot_api()
+    sleep(300)
