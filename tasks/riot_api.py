@@ -1,4 +1,4 @@
-from datetime import datetime
+from datetime import datetime, timezone
 from time import sleep
 
 import requests
@@ -18,28 +18,24 @@ def riot_api():
     # All the Riot API calls
     chall_url = f'https://na1.api.riotgames.com/tft/league/v1/challenger?queue=RANKED_TFT&api_key={RIOT_API_KEY}'
     gm_url = f'https://na1.api.riotgames.com/tft/league/v1/grandmaster?queue=RANKED_TFT&api_key={RIOT_API_KEY}'
-    master_url = f'https://na1.api.riotgames.com/tft/league/v1/master?queue=RANKED_TFT&api_key={RIOT_API_KEY}'
 
     chall_resp = requests.get(chall_url)
     gm_resp = requests.get(gm_url)
-    master_resp = requests.get(master_url)
 
     chall_info = chall_resp.json()
     gm_info = gm_resp.json()
-    master_info = master_resp.json()
 
     # Extract relevant data
     chall_data = [{'summonerId': d['summonerId'], 'leaguePoints': d['leaguePoints']} for d in chall_info['entries']]
     gm_data = [{'summonerId': d['summonerId'], 'leaguePoints': d['leaguePoints']} for d in gm_info['entries']]
-    master_data = [{'summonerId': d['summonerId'], 'leaguePoints': d['leaguePoints']} for d in master_info['entries']]
-    combined_data = chall_data + gm_data + master_data
+    combined_data = chall_data + gm_data
 
     summonerIds = [data['summonerId'] for data in combined_data]
     entries = Id_collection.find({'summonerId': {'$in': summonerIds}})
     entries_dict = {entry['summonerId']: entry for entry in entries}
 
     need_conversion = []
-    cur = str(datetime.now())
+    cur = str(datetime.now(timezone.utc))
     for data in combined_data:
         leaguePoints = data['leaguePoints']
         entry = entries_dict.get(data['summonerId'])

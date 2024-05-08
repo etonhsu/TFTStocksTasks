@@ -1,4 +1,4 @@
-from datetime import datetime
+from datetime import datetime, timezone
 from time import sleep
 
 from utils.database import connect_user
@@ -28,7 +28,7 @@ def update_portfolio_history():
                 {'$push': {
                     'portfolio_history': {
                         'value': total,
-                        'date': datetime.now()
+                        'date': datetime.now(timezone.utc)
                     }
                 }}
             )
