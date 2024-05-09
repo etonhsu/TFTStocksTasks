@@ -38,4 +38,4 @@ def update_portfolio_history():
 if __name__ == "__main__":
     while True:
         update_portfolio_history()
-        sleep(300)
+        sleep(60)
