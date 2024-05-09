@@ -11,7 +11,7 @@ def update_portfolio_history():
     for user in users:
         portfolio = 0
         for player in user['portfolio']['players']:
-            price = price_model(user['portfolio']['players'][player]['current_price'])
+            price = (user['portfolio']['players'][player]['current_price'])
             shares = user['portfolio']['players'][player]['shares']
             value = price * shares
             portfolio += value
@@ -32,7 +32,7 @@ def update_portfolio_history():
                     }
                 }}
             )
-            print(f'Updated {user["_id"]} portfolio')
+            print(f'Updated {user["username"]} portfolio: {total}')
 
 
 if __name__ == "__main__":
