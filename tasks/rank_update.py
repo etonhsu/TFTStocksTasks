@@ -28,4 +28,4 @@ def rank_update():
 if __name__ == "__main__":
     while True:
         rank_update()
-        sleep(60)
+        sleep(120)

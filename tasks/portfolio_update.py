@@ -22,4 +22,4 @@ def portfolio_update():
 if __name__ == "__main__":
     while True:
         portfolio_update()
-        sleep(300)
+        sleep(120)
