@@ -1,5 +1,5 @@
-A = 1.35
-B = 0.11282
+A = 1.75
+B = 0.00698
 
 
 def price_model(lp: float) -> float:
