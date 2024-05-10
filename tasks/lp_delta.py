@@ -1,7 +1,7 @@
 from time import sleep
 
 from utils.database import connect_lp
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, timezone
 from utils.pricing_model import price_model
 
 
@@ -26,18 +26,25 @@ def find_closest_lp(target_time, date_times, league_points):
 
     return league_points[closest_index]
 
+def parse_date(date_str):
+    try:
+        # Parse with timezone (offset-aware)
+        return datetime.strptime(date_str, "%Y-%m-%d %H:%M:%S.%f%z")
+    except ValueError:
+        # Parse without timezone and add UTC as default timezone (making it offset-aware)
+        try:
+            return datetime.strptime(date_str, "%Y-%m-%d %H:%M:%S.%f").replace(tzinfo=timezone.utc)
+        except ValueError:
+            print(f"Failed to parse date: {date_str}")
+            return None
 
 def calculate_delta():
     lp_collection = connect_lp()
     documents = lp_collection.find()
 
     for doc in documents:
-        # Safely convert date strings to datetime objects
-        try:
-            date_times = [datetime.strptime(date_str, "%Y-%m-%d %H:%M:%S.%f") for date_str in doc['date']]
-        except ValueError:
-            print(f"Date format error in document {doc['_id']}")
-            continue  # Skip this document or handle the error as needed
+        date_times = [parse_date(date_str) for date_str in doc['date']]
+        date_times = [dt for dt in date_times if dt is not None]  # Filter out None results
 
         current_lp = doc['leaguePoints'][-1] if doc['leaguePoints'] else None
         current_date = date_times[-1] if date_times else None
